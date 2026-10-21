@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CampusCare | Student Task & Notice Manager</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f4f7fb;color:#1f2937;line-height:1.6}
+header{background:#172554;color:white;padding:18px 8%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+.logo{font-size:24px;font-weight:700}
+nav a{color:white;text-decoration:none;margin-left:22px}
+nav a:hover{text-decoration:underline}
+.hero{padding:70px 8%;background:linear-gradient(135deg,#dbeafe,#eff6ff);text-align:center}
+.hero h1{font-size:42px;color:#172554;margin-bottom:12px}
+.hero p{max-width:700px;margin:0 auto 24px}
+.btn{display:inline-block;border:0;border-radius:8px;padding:11px 18px;background:#2563eb;color:white;text-decoration:none;cursor:pointer;font-weight:600}
+.btn:hover{background:#1d4ed8}
+.container{width:84%;max-width:1100px;margin:35px auto}
+.section-title{text-align:center;margin-bottom:22px;color:#172554}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{background:white;border-radius:12px;padding:22px;box-shadow:0 4px 14px rgba(0,0,0,.08)}
+.card h3{color:#1d4ed8;margin-bottom:8px}
+form{background:white;padding:22px;border-radius:12px;box-shadow:0 4px 14px rgba(0,0,0,.08);margin-bottom:25px}
+input,select,textarea{width:100%;padding:11px;margin:7px 0 14px;border:1px solid #cbd5e1;border-radius:7px}
+.task{display:flex;justify-content:space-between;align-items:center;gap:15px;border-left:5px solid #2563eb;margin-bottom:12px}
+.task.done{border-left-color:#16a34a;opacity:.7}
+.task.done h3{text-decoration:line-through}
+.badge{padding:4px 9px;border-radius:15px;background:#dbeafe;color:#1e40af;font-size:12px}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.search{margin-bottom:18px}
+footer{background:#172554;color:white;text-align:center;padding:22px;margin-top:45px}
+.notice{border-left:5px solid #f59e0b}
+#empty{text-align:center;color:#64748b;padding:20px}
+@media(max-width:700px){header{flex-direction:column;gap:10px}.hero h1{font-size:32px}nav a{margin:0 7px}.container{width:92%}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">CampusCare</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#tasks">Tasks</a>
+    <a href="#notices">Notices</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <h1>CampusCare</h1>
+  <p>A simple student productivity portal to manage academic tasks, important notices and daily campus activities in one place.</p>
+  <a class="btn" href="#tasks">Manage My Tasks</a>
+</section>
+
+<section class="container">
+  <h2 class="section-title">Why CampusCare?</h2>
+  <div class="cards">
+    <div class="card"><h3>📚 Academic Tasks</h3><p>Add assignments, practicals and project work with deadlines.</p></div>
+    <div class="card"><h3>📢 Campus Notices</h3><p>View important events, submission reminders and announcements.</p></div>
+    <div class="card"><h3>✅ Progress Tracking</h3><p>Mark completed work and keep your academic workload organized.</p></div>
+  </div>
+</section>
+
+<section class="container" id="tasks">
+  <h2 class="section-title">Task Manager</h2>
+  <form id="taskForm">
+    <label>Task Name</label>
+    <input id="taskName" required placeholder="e.g. Submit DevOps practical">
+    <label>Subject / Category</label>
+    <input id="taskCategory" required placeholder="e.g. DevOps">
+    <label>Deadline</label>
+    <input id="taskDate" type="date" required>
+    <button class="btn" type="submit">Add Task</button>
+  </form>
+  <input class="search" id="searchBox" placeholder="Search tasks...">
+  <div id="taskList"></div>
+  <div id="empty">No tasks added yet.</div>
+</section>
+
+<section class="container" id="notices">
+  <h2 class="section-title">Campus Notices</h2>
+  <div class="cards">
+    <div class="card notice"><h3>DevOps Practical</h3><p>Complete the ISE-2 website, Git/GitHub and Jenkins integration activity.</p></div>
+    <div class="card notice"><h3>Project Submission</h3><p>Keep your project report, README and evidence screenshots ready.</p></div>
+    <div class="card notice"><h3>Technical Event</h3><p>Check your department notice board for upcoming workshops and events.</p></div>
+  </div>
+</section>
+
+<section class="container" id="contact">
+  <h2 class="section-title">Contact</h2>
+  <form id="contactForm">
+    <input id="studentName" required placeholder="Your name">
+    <input id="studentEmail" type="email" required placeholder="Your email">
+    <textarea id="message" rows="4" required placeholder="Enter your message"></textarea>
+    <button class="btn" type="submit">Send Message</button>
+  </form>
+</section>
+
+<footer>
+  <p>© 2026 CampusCare | DevOps and Kubernetes ISE-2 Project</p>
+</footer>
+
+<script>
+let tasks = JSON.parse(localStorage.getItem("campuscare_tasks") || "[]");
+
+function saveTasks(){
+  localStorage.setItem("campuscare_tasks", JSON.stringify(tasks));
+}
+
+function renderTasks(){
+  const list = document.getElementById("taskList");
+  const empty = document.getElementById("empty");
+  const query = document.getElementById("searchBox").value.toLowerCase();
+  list.innerHTML = "";
+  const filtered = tasks.filter(t =>
+    t.name.toLowerCase().includes(query) ||
+    t.category.toLowerCase().includes(query)
+  );
+  empty.style.display = filtered.length ? "none" : "block";
+  filtered.forEach((task, index) => {
+    const realIndex = tasks.indexOf(task);
+    const div = document.createElement("div");
+    div.className = "card task " + (task.done ? "done" : "");
+    div.innerHTML = `
+      <div>
+        <h3>${escapeHtml(task.name)}</h3>
+        <p><span class="badge">${escapeHtml(task.category)}</span> &nbsp; Deadline: ${task.date}</p>
+      </div>
+      <div class="actions">
+        <button class="btn" onclick="toggleTask(${realIndex})">${task.done ? "Undo" : "Complete"}</button>
+        <button class="btn" onclick="deleteTask(${realIndex})">Delete</button>
+      </div>`;
+    list.appendChild(div);
+  });
+}
+
+function escapeHtml(text){
+  const div = document.createElement("div");
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function toggleTask(index){
+  tasks[index].done = !tasks[index].done;
+  saveTasks();
+  renderTasks();
+}
+
+function deleteTask(index){
+  tasks.splice(index, 1);
+  saveTasks();
+  renderTasks();
+}
+
+document.getElementById("taskForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  tasks.push({
+    name: document.getElementById("taskName").value,
+    category: document.getElementById("taskCategory").value,
+    date: document.getElementById("taskDate").value,
+    done: false
+  });
+  saveTasks();
+  this.reset();
+  renderTasks();
+});
+
+document.getElementById("searchBox").addEventListener("input", renderTasks);
+
+document.getElementById("contactForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  alert("Thank you! Your message has been recorded for the demo.");
+  this.reset();
+});
+
+renderTasks();
+</script>
+</body>
+</html>
