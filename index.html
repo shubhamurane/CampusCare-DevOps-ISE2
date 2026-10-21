@@ -7,235 +7,50 @@
 <title>CampusCare | Student Task & Notice Manager</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f7fb;
-    color: #1f2937;
-    line-height: 1.6;
-}
-
-header {
-    background: #172554;
-    color: white;
-    padding: 18px 8%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
-
-.logo {
-    font-size: 24px;
-    font-weight: 700;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 22px;
-}
-
-nav a:hover {
-    text-decoration: underline;
-}
-
-.hero {
-    padding: 70px 8%;
-    background: linear-gradient(135deg, #dbeafe, #eff6ff);
-    text-align: center;
-}
-
-.hero h1 {
-    font-size: 42px;
-    color: #172554;
-    margin-bottom: 12px;
-}
-
-.hero p {
-    max-width: 700px;
-    margin: 0 auto 24px;
-}
-
-.btn {
-    display: inline-block;
-    border: 0;
-    border-radius: 8px;
-    padding: 11px 18px;
-    background: #2563eb;
-    color: white;
-    text-decoration: none;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.btn:hover {
-    background: #1d4ed8;
-}
-
-.container {
-    width: 84%;
-    max-width: 1100px;
-    margin: 35px auto;
-}
-
-.section-title {
-    text-align: center;
-    margin-bottom: 22px;
-    color: #172554;
-}
-
-.cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 18px;
-}
-
-.card {
-    background: white;
-    border-radius: 12px;
-    padding: 22px;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, .08);
-}
-
-.card h3 {
-    color: #1d4ed8;
-    margin-bottom: 8px;
-}
-
-form {
-    background: white;
-    padding: 22px;
-    border-radius: 12px;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, .08);
-    margin-bottom: 25px;
-}
-
-input, select, textarea {
-    width: 100%;
-    padding: 11px;
-    margin: 7px 0 14px;
-    border: 1px solid #cbd5e1;
-    border-radius: 7px;
-}
-
-.task {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    border-left: 5px solid #2563eb;
-    margin-bottom: 12px;
-}
-
-.task.done {
-    border-left-color: #16a34a;
-    opacity: .7;
-}
-
-.task.done h3 {
-    text-decoration: line-through;
-}
-
-.badge {
-    padding: 4px 9px;
-    border-radius: 15px;
-    background: #dbeafe;
-    color: #1e40af;
-    font-size: 12px;
-}
-
-.priority {
-    padding: 4px 9px;
-    border-radius: 15px;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-.priority.high {
-    background: #fee2e2;
-    color: #991b1b;
-}
-
-.priority.medium {
-    background: #fef3c7;
-    color: #92400e;
-}
-
-.priority.low {
-    background: #dcfce7;
-    color: #166534;
-}
-
-.actions {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-.search {
-    margin-bottom: 8px;
-}
-
-.filter-label {
-    display: block;
-    font-weight: bold;
-    margin-top: 8px;
-}
-
-#empty {
-    text-align: center;
-    color: #64748b;
-    padding: 20px;
-}
-
-.notice {
-    border-left: 5px solid #f59e0b;
-}
-
-footer {
-    background: #172554;
-    color: white;
-    text-align: center;
-    padding: 22px;
-    margin-top: 45px;
-}
-
-@media (max-width: 700px) {
-    header {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .hero h1 {
-        font-size: 32px;
-    }
-
-    nav a {
-        margin: 0 7px;
-    }
-
-    .container {
-        width: 92%;
-    }
-
-    .task {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f4f7fb;color:#1f2937;line-height:1.6}
+header{background:#172554;color:white;padding:18px 8%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+.logo{font-size:24px;font-weight:700}
+nav a{color:white;text-decoration:none;margin-left:22px}
+nav a:hover{text-decoration:underline}
+.hero{padding:70px 8%;background:linear-gradient(135deg,#dbeafe,#eff6ff);text-align:center}
+.hero h1{font-size:42px;color:#172554;margin-bottom:12px}
+.hero p{max-width:700px;margin:0 auto 24px}
+.btn{display:inline-block;border:0;border-radius:8px;padding:11px 18px;background:#2563eb;color:white;text-decoration:none;cursor:pointer;font-weight:600}
+.btn:hover{background:#1d4ed8}
+.container{width:84%;max-width:1100px;margin:35px auto}
+.section-title{text-align:center;margin-bottom:22px;color:#172554}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{background:white;border-radius:12px;padding:22px;box-shadow:0 4px 14px rgba(0,0,0,.08)}
+.card h3{color:#1d4ed8;margin-bottom:8px}
+.stat-number{font-size:30px;font-weight:bold;color:#172554}
+form{background:white;padding:22px;border-radius:12px;box-shadow:0 4px 14px rgba(0,0,0,.08);margin-bottom:25px}
+input,select,textarea{width:100%;padding:11px;margin:7px 0 14px;border:1px solid #cbd5e1;border-radius:7px}
+.task{display:flex;justify-content:space-between;align-items:center;gap:15px;border-left:5px solid #2563eb;margin-bottom:12px}
+.task.done{border-left-color:#16a34a;opacity:.7}
+.task.done h3{text-decoration:line-through}
+.badge{padding:4px 9px;border-radius:15px;background:#dbeafe;color:#1e40af;font-size:12px}
+.priority{padding:4px 9px;border-radius:15px;font-size:12px;font-weight:bold}
+.priority.high{background:#fee2e2;color:#991b1b}
+.priority.medium{background:#fef3c7;color:#92400e}
+.priority.low{background:#dcfce7;color:#166534}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.search{margin-bottom:8px}
+.filter-label{display:block;font-weight:bold;margin-top:8px}
+#empty{text-align:center;color:#64748b;padding:20px}
+.notice{border-left:5px solid #f59e0b}
+footer{background:#172554;color:white;text-align:center;padding:22px;margin-top:45px}
+@media(max-width:700px){
+header{flex-direction:column;gap:10px}
+.hero h1{font-size:32px}
+nav a{margin:0 7px}
+.container{width:92%}
+.task{flex-direction:column;align-items:flex-start}
 }
 </style>
 </head>
 
 <body>
-
 <header>
     <div class="logo">CampusCare</div>
     <nav>
@@ -248,11 +63,7 @@ footer {
 
 <section class="hero" id="home">
     <h1>CampusCare</h1>
-    <p>
-        A simple student productivity portal to manage
-        academic tasks, important notices and daily
-        campus activities in one place.
-    </p>
+    <p>A simple student productivity portal to manage academic tasks, important notices and daily campus activities in one place.</p>
     <a class="btn" href="#tasks">Manage My Tasks</a>
 </section>
 
@@ -276,6 +87,22 @@ footer {
 
 <section class="container" id="tasks">
     <h2 class="section-title">Task Manager</h2>
+
+    <!-- Task Statistics Dashboard -->
+    <div class="cards" id="taskStats" style="margin-bottom:25px">
+        <div class="card">
+            <h3>Total Tasks</h3>
+            <p class="stat-number" id="totalTasks">0</p>
+        </div>
+        <div class="card">
+            <h3>Pending Tasks</h3>
+            <p class="stat-number" id="pendingTasks">0</p>
+        </div>
+        <div class="card">
+            <h3>Completed Tasks</h3>
+            <p class="stat-number" id="completedTasks">0</p>
+        </div>
+    </div>
 
     <form id="taskForm">
         <label for="taskName">Task Name</label>
@@ -346,11 +173,9 @@ footer {
 </footer>
 
 <script>
-let tasks = JSON.parse(
-    localStorage.getItem("campuscare_tasks") || "[]"
-);
+let tasks = JSON.parse(localStorage.getItem("campuscare_tasks") || "[]");
 
-// Support older tasks that may not have a priority.
+// Handle tasks created before priority was added.
 tasks.forEach(function(task) {
     if (!task.priority) {
         task.priority = "Low";
@@ -358,10 +183,7 @@ tasks.forEach(function(task) {
 });
 
 function saveTasks() {
-    localStorage.setItem(
-        "campuscare_tasks",
-        JSON.stringify(tasks)
-    );
+    localStorage.setItem("campuscare_tasks", JSON.stringify(tasks));
 }
 
 function escapeHtml(text) {
@@ -373,12 +195,15 @@ function escapeHtml(text) {
 function renderTasks() {
     const list = document.getElementById("taskList");
     const empty = document.getElementById("empty");
+    const query = document.getElementById("searchBox").value.toLowerCase().trim();
+    const selectedPriority = document.getElementById("priorityFilter").value;
 
-    const query = document.getElementById("searchBox")
-        .value.toLowerCase().trim();
-
-    const selectedPriority =
-        document.getElementById("priorityFilter").value;
+    // Update dashboard statistics using ALL tasks.
+    document.getElementById("totalTasks").textContent = tasks.length;
+    document.getElementById("pendingTasks").textContent =
+        tasks.filter(task => !task.done).length;
+    document.getElementById("completedTasks").textContent =
+        tasks.filter(task => task.done).length;
 
     list.innerHTML = "";
 
@@ -402,17 +227,14 @@ function renderTasks() {
     empty.textContent = filtered.length
         ? ""
         : (tasks.length ? "No matching tasks found." : "No tasks added yet.");
-
     empty.style.display = filtered.length ? "none" : "block";
 
     filtered.forEach(function(task) {
         const realIndex = tasks.indexOf(task);
         const div = document.createElement("div");
-
         div.className = "card task " + (task.done ? "done" : "");
 
-        const priorityClass =
-            (task.priority || "Low").toLowerCase();
+        const priorityClass = (task.priority || "Low").toLowerCase();
 
         div.innerHTML = `
             <div>
