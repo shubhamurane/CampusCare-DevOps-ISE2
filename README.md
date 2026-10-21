@@ -109,4 +109,4 @@ Include screenshots of:
 ![Screenshot 10.2](CampusCareScreenshots/10.2.png)
 
 ## 10.2
-![Screenshot 10.2](Screenshots/10.2.png)
+![Screenshot 10.2](CampusCareScreenshots/10.2.png)
