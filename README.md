@@ -60,28 +60,28 @@ Include screenshots of:
 
 # CampusCare Project Screenshots
 
-## CampusCare Website Homepage
+## CampusCare Website Homepage 1
 ![CampusCare Website Homepage](CampusCareScreenshots/1.1.png)
 
-## Screenshot 2.1
+## Task Manager Working 2.1
 ![Screenshot 2.1](CampusCareScreenshots/2.1.png)
 
-## Screenshot 2.2
+## Task Manager Working 2.2
 ![Screenshot 2.2](CampusCareScreenshots/2.2.png)
 
-## Screenshot 3.1
+## Git Status and Push 3
 ![Screenshot 3.1](CampusCareScreenshots/3.1.png)
 
-## Screenshot 4.1
+## Git Commit History 4
 ![Screenshot 4.1](CampusCareScreenshots/4.1.png)
 
-## Screenshot 5.1
+## GitHub Repository 5
 ![Screenshot 5.1](CampusCareScreenshots/5.1.png)
 
-## Screenshot 6.1
+## GitHub Commit History 6
 ![Screenshot 6.1](CampusCareScreenshots/6.1.png)
 
-## Screenshot 7.1
+## Jenkins Job Configuration 7.1
 ![Screenshot 7.1](CampusCareScreenshots/7.1.png)
 
 ## Screenshot 7.2
@@ -96,17 +96,15 @@ Include screenshots of:
 ## Screenshot 7.6
 ![Screenshot 7.6](CampusCareScreenshots/7.6.png)
 
-## Screenshot 8.1
+## Jenkins Build History 8
 ![Screenshot 8.1](CampusCareScreenshots/8.1.png)
 
-## Screenshot 9.1
+## Jenkins Console Output — SUCCESS 9
 ![Screenshot 9.1](CampusCareScreenshots/9.1.png)
 
-## Screenshot 10.1
+##  Successfull run On CMD (Online running) 10
 ![Screenshot 10.1](CampusCareScreenshots/10.1.png)
 
-## Screenshot 10.2
+## GitHub Webhook Delivery 11
 ![Screenshot 10.2](CampusCareScreenshots/10.2.png)
 
-## 10.2
-![Screenshot 10.2](CampusCareScreenshots/10.2.png)
