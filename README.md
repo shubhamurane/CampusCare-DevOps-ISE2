@@ -60,7 +60,7 @@ Include screenshots of:
 
 # CampusCare Project Screenshots
 
-## Screenshot 1.1
+## CampusCare Website Homepage
 ![CampusCare Website Homepage](CampusCareScreenshots/1.1.png)
 
 ## Screenshot 2.1
