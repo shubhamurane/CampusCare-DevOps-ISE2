@@ -1,11 +1,10 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CampusCare | Student Task & Notice Manager</title>
-
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Arial,sans-serif;background:#f4f7fb;color:#1f2937;line-height:1.6}
@@ -49,7 +48,6 @@ nav a{margin:0 7px}
 }
 </style>
 </head>
-
 <body>
 <header>
     <div class="logo">CampusCare</div>
@@ -88,7 +86,6 @@ nav a{margin:0 7px}
 <section class="container" id="tasks">
     <h2 class="section-title">Task Manager</h2>
 
-    <!-- Task Statistics Dashboard -->
     <div class="cards" id="taskStats" style="margin-bottom:25px">
         <div class="card">
             <h3>Total Tasks</h3>
@@ -136,6 +133,14 @@ nav a{margin:0 7px}
         <option value="Low">Low Priority</option>
     </select>
 
+    <!-- New Task Status Filter -->
+    <label class="filter-label" for="statusFilter">Filter by Task Status</label>
+    <select id="statusFilter">
+        <option value="all">All Tasks</option>
+        <option value="pending">Pending Tasks</option>
+        <option value="completed">Completed Tasks</option>
+    </select>
+
     <div id="taskList"></div>
     <div id="empty">No tasks added yet.</div>
 </section>
@@ -175,7 +180,6 @@ nav a{margin:0 7px}
 <script>
 let tasks = JSON.parse(localStorage.getItem("campuscare_tasks") || "[]");
 
-// Handle tasks created before priority was added.
 tasks.forEach(function(task) {
     if (!task.priority) {
         task.priority = "Low";
@@ -197,8 +201,9 @@ function renderTasks() {
     const empty = document.getElementById("empty");
     const query = document.getElementById("searchBox").value.toLowerCase().trim();
     const selectedPriority = document.getElementById("priorityFilter").value;
+    const selectedStatus = document.getElementById("statusFilter").value;
 
-    // Update dashboard statistics using ALL tasks.
+    // Dashboard statistics use all tasks.
     document.getElementById("totalTasks").textContent = tasks.length;
     document.getElementById("pendingTasks").textContent =
         tasks.filter(task => !task.done).length;
@@ -221,7 +226,13 @@ function renderTasks() {
             selectedPriority === "all" ||
             (task.priority || "Low") === selectedPriority;
 
-        return matchesSearch && matchesPriority;
+        // New status filtering logic.
+        const matchesStatus =
+            selectedStatus === "all" ||
+            (selectedStatus === "pending" && !task.done) ||
+            (selectedStatus === "completed" && task.done);
+
+        return matchesSearch && matchesPriority && matchesStatus;
     });
 
     empty.textContent = filtered.length
@@ -292,6 +303,7 @@ document.getElementById("taskForm").addEventListener("submit", function(e) {
 
 document.getElementById("searchBox").addEventListener("input", renderTasks);
 document.getElementById("priorityFilter").addEventListener("change", renderTasks);
+document.getElementById("statusFilter").addEventListener("change", renderTasks);
 
 document.getElementById("contactForm").addEventListener("submit", function(e) {
     e.preventDefault();
@@ -302,7 +314,5 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
 saveTasks();
 renderTasks();
 </script>
-
 </body>
 </html>
-```
